@@ -37,11 +37,7 @@ Only the backend talks to the database and Gemini. The frontend only talks to th
 docker compose up --build
 ```
 
-Open:
 
-- Frontend: http://localhost:3000
-- Backend API schema: http://localhost:8000/api/schema/
-- Django admin: http://localhost:8000/admin/
 
 ## Environment
 
