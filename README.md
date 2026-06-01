@@ -2,6 +2,14 @@
 
 Padel Discovery AI is a full-stack MVP for finding padel courts, coaches, and tournaments. It combines a Next.js frontend, a Django REST backend, PostgreSQL, and optional Gemini-powered natural language search.
 
+## Tech stack
+
+- Backend: Python 3.12+, Django 5.x, Django REST Framework, SimpleJWT
+- Frontend: Next.js 15 (App Router), React 19, TypeScript, Tailwind CSS
+- Database: PostgreSQL 16 (dev fallback: SQLite)
+- Deployment: Static export for frontend (preferred) or Docker for full SSR; backend as Docker web service or any WSGI host
+- AI: Google Gemini (optional, backend-only)
+
 ## What it does
 
 - Browse courts, coaches, and tournaments.
@@ -130,6 +138,27 @@ npm ci && npm run build && npx next export
 After deployment, the static site will call the backend URL baked at build time.
 
 Limitations: `next export` only works for fully static pages. Server-rendered pages, API routes, or server components will not work as expected.
+
+### Render Static Site — Exact Settings
+
+- Service type: Static Site
+- Root directory: `frontend`
+- Build command: `npm ci && npm run build && npx next export`
+- Publish directory: `out`
+- Build environment variables (Render > Build settings):
+	- `NEXT_PUBLIC_API_BASE_URL=https://<your-backend>.onrender.com`
+- Runtime env: not required for static sites (the API base is baked at build time)
+
+Local preview of the exported site:
+
+```bash
+cd frontend
+npm ci
+npm run build
+npx next export
+npx serve out -l 3000
+# open http://localhost:3000
+```
 
 ## Deploying Backend on Render (Web Service)
 
